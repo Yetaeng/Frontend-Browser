@@ -13,41 +13,25 @@
     </style>
 </head>
 <body>
-    <div class="box">
-        <p>window.screen: <span class="screenWidth"></span>, <span class="screenHeight"></span></p>
-        <p>window.outer: <span class="outerWidth"></span>, <span class="outerHeight"></span></p>
-        <p>window.inner: <span class="innerWidth"></span>, <span class="innerHeight"></span></p>
-        <p>documentElement.clientWidth: <span class="clientWidth"></span>, <span class="clientHeight"></span></p>
-    </div>
+    <div class="box"></div>
     <script>
-        const screenWidth = document.querySelector('.screenWidth');
-        const screenHeight = document.querySelector('.screenHeight');
+        const box = document.querySelector('.box');
 
-        const outerWidth = document.querySelector('.outerWidth');
-        const outerHeight = document.querySelector('.outerHeight');
+        function updateBox() {
+            box.innerHTML = 
+            `
+            window.screen: ${window.screen.width}, ${window.screen.height} </br>
+            window.outer: ${window.outerWidth}, ${window.outerHeight} </br>
+            window.inner: ${window.innerWidth}, ${window.innerHeight} </br>
+            documentElement.clientWidth: ${document.documentElement.clientWidth}, ${document.documentElement.clientHeight};
+            `;
+        };
 
-        const innerWidth = document.querySelector('.innerWidth');
-        const innerHeight = document.querySelector('.innerHeight');
-
-        const clientWidth = document.querySelector('.clientWidth');
-        const clientHeight = document.querySelector('.clientHeight');
-
-        // 사이즈가 변경될 때마다 창 크기를 나타내는 함수를 호출하도록 이벤트리스너를 등록해야함.
-        // 이벤트리스너를 등록안하고 그냥 요소에 크기를 할당해줘서 사이즈가 변해도 크기가 변하지 않았다.
         window.addEventListener('resize', () => {
-            screenWidth.innerText = window.screen.width;
-            screenHeight.innerText = window.screen.height;
-            
-            outerWidth.innerText = window.outerWidth;
-            outerHeight.innerText = window.outerHeight;
-            
-            innerWidth.innerText = window.innerWidth;
-            innerHeight.innerText = window.innerHeight;
-            
-            // documentElement는 document안에 있는 것!
-            clientWidth.innerText = document.documentElement.clientWidth;
-            clientHeight.innerText = document.documentElement.clientHeight;
-        })
+            updateBox()
+        });
+
+        updateBox();
     </script>
 </body>
 </html>
