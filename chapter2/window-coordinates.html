@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Coordinates</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: cadetblue;
+            margin: 5px;
+        }
+        .target {
+            background-color: darkslateblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box target"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <script>
+        const elem = document.querySelector('.target');
+        const target = elem.getBoundingClientRect()
+
+        elem.addEventListener('click', () => {
+            console.log(target)
+            console.log(`client: ${target.x}, ${target.y}`)
+            console.log(`page: ${elem.offsetLeft}, ${elem.offsetTop}`)
+        });
+    </script>
+</body>
+</html>
