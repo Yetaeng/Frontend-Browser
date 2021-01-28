@@ -34,11 +34,13 @@
     <script>
         const elem = document.querySelector('.target');
         const target = elem.getBoundingClientRect()
-
-        elem.addEventListener('click', () => {
+        // 이벤트에는 event라는 오브젝트가 항상 전달된다.
+        // 아래 코드는 클릭이 되면, 다양한 정보를 담은 click 오브젝트가 argument로 함수에 등록한 콜백함수에 전달된다.
+        elem.addEventListener('click', event => {
             console.log(target)
-            console.log(`client: ${target.x}, ${target.y}`)
-            console.log(`page: ${elem.offsetLeft}, ${elem.offsetTop}`)
+            // event.를하고 자동으로 나오는 정보들 중에 clientX 등이 안나와서 없는 건줄 알았다ㅠ
+            console.log(`client: ${event.clientX}, ${event.clientY}`)
+            console.log(`page: ${event.pageX}, ${event.pageY}`)
         });
     </script>
 </body>
