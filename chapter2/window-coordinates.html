@@ -59,14 +59,14 @@
         const btnInto = document.querySelector('.btnInto');
 
         btnBy.addEventListener('click', () => {
-            window.scrollBy(0,100)
+            window.scrollBy(0, 100)
+            // window.scrollBy({top:100, left:0, behavior: 'smooth'}) 객체로 주는 방법
         })
         btnTo.addEventListener('click', () => {
             window.scrollTo(0,100)
         })
         btnInto.addEventListener('click', () => {
-            const targetPosition = target.y
-            window.scrollTo(0,targetPosition)
+            elem.scrollIntoView();;
         })
     </script>
 </body>
