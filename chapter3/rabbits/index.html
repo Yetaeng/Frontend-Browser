@@ -16,9 +16,11 @@
       .btn {
         width: 100px;
         color: white;
-        background-color: red;
-        border: none;
+        background-color: tomato;
+        outline: none;
         padding: 0;
+        margin: 10px 0;
+        cursor: pointer;
       }
 
       img {
@@ -49,11 +51,7 @@
       const target = document.querySelector('.target');
 
       btn.addEventListener('click', () => {  
-        const vh = window.innerHeight
-        const x = target.x
-        const y = target.y
-
-        window.scrollTo(x, y - vh/2)
+        target.scrollIntoView({behavior: "smooth", block: "center"})
       })
     </script>
   </body>
