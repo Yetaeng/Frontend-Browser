@@ -1,0 +1,77 @@
+body, h1, button,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: lightgray;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.wrap {
+    width: 300px;
+    height: 70vh;
+    background-color: darkslategray;
+    border-radius: 15px;
+}
+
+.title {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.items {
+    height: 50vh;
+    background-color: lavender;
+    list-style: none;
+    padding: 10px;
+}
+
+.item {
+    position: relative;
+    padding: 5px;
+}
+
+.delBtn {
+    position: absolute;
+    right: 0;
+}
+
+#input {
+    width: 280px;
+    height: 44px;
+    padding: 0 10px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    transform: translateY(-2px);
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    background: url(./img/add_icon.png) no-repeat;
+    background-size: 100%;
+}
+
+.add_img {
+    width: 35px;
+    height: 35px;
+}
