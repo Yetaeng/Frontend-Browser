@@ -1,5 +1,6 @@
 const addBtn = document.querySelector('.btn');
 const items = document.querySelector('.items');
+const input = document.querySelector('#input');
 
 function addItem() {
     const li = document.createElement('li');
@@ -12,8 +13,8 @@ function addItem() {
     const delBtn = document.createElement('button');
     delBtn.className = 'delBtn';
     
-    let delText = document.createTextNode('DEL');
-    delBtn.appendChild(delText);
+    // let delText = document.createTextNode('DEL');
+    // delBtn.appendChild(delText);
     li.appendChild(delBtn);
 
     if (inputValue === '') {
@@ -36,11 +37,11 @@ function addItem() {
     }
 }
 
-function enterkey() { 
-    if (window.event.keyCode == 13) { 
+input.addEventListener('keydown', () => {
+    if (window.event.keyCode === 13) {
         addItem();
-    }   
-}
+    }
+})
 
 addBtn.addEventListener('click', () => {
     addItem();

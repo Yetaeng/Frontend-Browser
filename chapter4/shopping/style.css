@@ -10,6 +10,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: lightgray;
+    font-family: '나눔 고딕', NanumGothic, '돋움', Dotum, sans-serif;
 }
 
 button {
@@ -43,11 +44,21 @@ button {
 .item {
     position: relative;
     padding: 5px;
+    font-size: 16px;
 }
 
 .delBtn {
     position: absolute;
-    right: 0;
+    top: 4px;
+    right: 6px;
+    width: 20px;
+    height: 25px;
+    background: url(./img/delete.png) no-repeat 0 0;
+    background-size: 100%;
+}
+
+.delBtn:hover {
+    background-size: 110%;
 }
 
 #input {
