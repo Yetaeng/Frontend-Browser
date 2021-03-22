@@ -1,66 +1,46 @@
-const gameBtn = document.querySelector('.game_btn');
-const gameArea = document.querySelector('.game_area'); // All을 하면 getBoundingClientRect 함수 사용 못함
-const gameAreaSize = gameArea.getBoundingClientRect();
+'use strict';
 
-// init함수를 호출하면 당근과 벌레들이 랜덤으로 배치된다.
-function init() {
-    // 당근과 벌레 수를 선언한다.
-    const carrots = 5;
-    const bugs = 5;
-    let checkCarrot = 0;
-    let checkBug = 0;
+const area = document.querySelector('.game_area');
+const areaRect = area.getBoundingClientRect();
+const carrotSize = 80;
 
-    
-    // 당근
-    for (i=0; checkCarrot < carrots; i++) {
-        // Math.random()을 이용해 난수를 얻는다.
-        let randomX = Math.random()*1000;
-        let randomY = Math.random()*1000;
-
-        // gameArea 범위 내의 난수들만 살려냄
-        if (randomX > gameAreaSize.left && randomX < gameAreaSize.right) {
-            if (randomY > gameAreaSize.top && randomY < gameAreaSize.bottom-100) {
-                checkCarrot += 1;
-                createCarrots(randomX, randomY);
-            }
-        }
-    }
-    // 벌레
-    for (i=0; checkBug < bugs; i++) {
-        let randomX2 = Math.random()*1000;
-        let randomY2 = Math.random()*1000;
-
-        if (randomX2 > gameAreaSize.left && randomX2 < gameAreaSize.right) {
-            if (randomY2 > gameAreaSize.top && randomY2 < gameAreaSize.bottom-100) {
-                checkBug += 1;
-                createBugs(randomX2, randomY2);
-            }
-        }
-    }
-};
-
-// gama_area의 width, height 등과 난수를 이용하여, game_area 영역에 요소를 생성해준다.
-function createCarrots(x, y) {
-    let carrotItem = document.createElement('img');
-    carrotItem.setAttribute('class', 'carrotItem');
-    carrotItem.setAttribute('src', './img/carrot.png')
-    gameArea.append(carrotItem);
-
-    carrotItem.style.transform = `translateX(${x}px)`;
-    carrotItem.style.transform = `translateY(${y-321}px)`;
+function initGame() {
+    console.log(areaRect);
+    addItem('carrot', 5, 'img/carrot.png');
+    addItem('bug', 5, 'img/bug.png');
 }
 
-function createBugs(x, y) {
-    let BugsItem = document.createElement('img');
-    BugsItem.setAttribute('class', 'BugsItem');
-    BugsItem.setAttribute('src', './img/bug.png')
-    gameArea.append(BugsItem);
+function addItem(itemName, count, imgPath) {
+    // x1, x2, y1, y2를 이용해 특정 범위 내에 속하는 난수를 구한다.
+    const x1 = 0;
+    const y1 = 0;
+    const x2 = areaRect.width - carrotSize; // bug는 50인데 가장 큰 거를 빼주자.
+    const y2 = areaRect.height - carrotSize;
 
-    BugsItem.style.transform = `translateX(${x}px)`;
-    BugsItem.style.transform = `translateY(${y-321}px)`;
+    for (let i=0; i<count; i++) {
+        const item = document.createElement('img');
+        item.setAttribute('class', itemName);
+        item.setAttribute('src', imgPath);
+        item.style.position = 'absolute';
+
+        const x = randomNumber(x1, x2);
+        const y = randomNumber(y1, y2);
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+
+        area.append(item);
+    }
 }
 
-// gameBtn을 클릭하면 init 함수가 호출된다.
-gameBtn.addEventListener('click', () => {
-    init();
-})
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+initGame();
+
+
+// game_area를 position:relative를 주고, item을 position으로 주면 그 영역 내에서 x, y대로 배치시킬 수 있다.
+
+// 나는 난수를 구할 떄 0 이상 1 미만의 난수 생성하기를 했는데, 엘리쌤은 두 값 사이의 난수 생성하기를 하심
+// 그래서 나는 소수점에 1000 같은 수를 곱해서 코드를 짰고,
+// 엘리쌤처럼 하면 두 값(맨 왼쪽부터 맨 오른쪽이랑 맨 위부터 맨 아래)사이의 난수를 그냥 구할 수 있다.
