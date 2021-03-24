@@ -3,6 +3,7 @@
 const area = document.querySelector('.game_area');
 const areaRect = area.getBoundingClientRect();
 const carrotSize = 80;
+const gameBtn = document.querySelector('.game_btn');
 
 function initGame() {
     console.log(areaRect);
@@ -36,7 +37,21 @@ function randomNumber(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-initGame();
+function removeAllItem() {
+    const carrot = document.querySelectorAll('.carrot');
+    const bug = document.querySelectorAll('.bug');
+
+    for (let i=0; i<carrot.length; i++) {
+        carrot[i].remove()
+        bug[i].remove()
+    }
+}
+
+gameBtn.addEventListener('click', () => {
+    console.log('Game Start!')
+    removeAllItem();
+    initGame();
+})
 
 
 // game_area를 position:relative를 주고, item을 position으로 주면 그 영역 내에서 x, y대로 배치시킬 수 있다.
