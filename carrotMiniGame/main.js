@@ -9,6 +9,7 @@ function initGame() {
     console.log(areaRect);
     addItem('carrot', 5, 'img/carrot.png');
     addItem('bug', 5, 'img/bug.png');
+    countItem(5);
 }
 
 function addItem(itemName, count, imgPath) {
@@ -48,18 +49,26 @@ function removeAllItem() {
 }
 
 function timer(setTimeSecond) {
-    let x = document.querySelector('.game_timer')
-    x.innerText = `0:${setTimeSecond}`;
+    let gameTimer = document.querySelector('.game_timer');
+    let setT;
+
+    gameTimer.innerText = `0:${setTimeSecond}`;
     for(let i=0; i<=setTimeSecond; i++) {
-        setTimeout(() => { x.innerText = `0:${setTimeSecond-i}` }, `${i}000`);
+        setT = setTimeout(() => { gameTimer.innerText = `0:${setTimeSecond-i}` }, `${i}000`);
     }
+    // clearTimeout(setT)
+}
+
+function countItem(count) {
+    let gameCnt = document.querySelector('.game_cnt');
+    gameCnt.innerText = `${count}`
 }
 
 gameBtn.addEventListener('click', () => {
     console.log('Game Start!')
     removeAllItem();
     initGame();
-    timer(15);
+    timer(5);
 })
 
 

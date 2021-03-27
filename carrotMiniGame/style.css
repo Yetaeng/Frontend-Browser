@@ -58,7 +58,7 @@ body {
 .game_cnt {
     width: 50px;
     height: 50px;
-    font-size: 40px;
+    font-size: 44px;
     background-color: var(--color-orange);
     margin-top: 15px;
     border: 3px solid #000;
