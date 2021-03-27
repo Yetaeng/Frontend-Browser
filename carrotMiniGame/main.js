@@ -47,10 +47,19 @@ function removeAllItem() {
     }
 }
 
+function timer(setTimeSecond) {
+    let x = document.querySelector('.game_timer')
+    x.innerText = `0:${setTimeSecond}`;
+    for(let i=0; i<=setTimeSecond; i++) {
+        setTimeout(() => { x.innerText = `0:${setTimeSecond-i}` }, `${i}000`);
+    }
+}
+
 gameBtn.addEventListener('click', () => {
     console.log('Game Start!')
     removeAllItem();
     initGame();
+    timer(15);
 })
 
 
