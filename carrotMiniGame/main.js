@@ -14,7 +14,8 @@ const popupMsg = document.querySelector('.popup_msg');
 
 let started = false;
 
-// 해결해야 할 것 : 게임을 지거나 이긴 후, 게임 중지버튼을 누르면 오류
+// 해결해야 할 것 : 게임을 지거나 이긴 후, 게임 중지버튼을 누르면 오류, 그리고 당근이나 벌레도 클릭 안됨
+// 종료 함수 다음에 started = !started를 넣어줘서 해결.
 
 /* 이벤트 */
 gameBtn.addEventListener('click', () => {
@@ -63,6 +64,7 @@ function removeCarrot() {
             if (gameTimer.textContent != '0:0' && gameCnt.textContent == '0') {
                 stopGame();
                 changePopupMsg('win');
+                started = !started;
             }
         })
     }
@@ -87,6 +89,7 @@ function checkClickBug() {
         bug[i].addEventListener('click', () => {
             stopGame();
             changePopupMsg('lose');
+            started = !started;
         })
     }
 }
@@ -128,6 +131,7 @@ function countDown() {
     if (time == 0) {
         stopGame();
         changePopupMsg('lose');
+        started = !started;
     }
 }
 
