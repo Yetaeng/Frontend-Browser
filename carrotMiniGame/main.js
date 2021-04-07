@@ -82,10 +82,10 @@ function removeCarrot() {
 
 function changePopupMsg(param) {
     if (param == 'win') {
-        popupMsg.innerText = "You Win!"
+        popupMsg.innerText = "You Won!"
     }
     else if (param == 'lose') {
-        popupMsg.innerText = "You Lose!"
+        popupMsg.innerText = "You lost!"
     }
     else if (param == 'replay') {
         popupMsg.innerText = "Replay?"
