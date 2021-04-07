@@ -12,18 +12,25 @@ const setTime = 5;
 const replayBtn = document.querySelector('.replay_btn');
 const popupMsg = document.querySelector('.popup_msg');
 
+const sndbgm = new Audio('./sound/bg.mp3');
+const sndAlert = new Audio('./sound/alert.wav');
+const sndBugPull = new Audio('./sound/bug_pull.mp3');
+const sndCarrotPull = new Audio('./sound/carrot_pull.mp3');
+const sndGameWin = new Audio('./sound/game_win.mp3');
+
 let started = false;
 
-// 해결해야 할 것 : 게임을 지거나 이긴 후, 게임 중지버튼을 누르면 오류, 그리고 당근이나 벌레도 클릭 안됨
-// 종료 함수 다음에 started = !started를 넣어줘서 해결.
 
 /* 이벤트 */
 gameBtn.addEventListener('click', () => {
     if(started) {
         stopGame();
         changePopupMsg('replay');
+        sndbgm.pause();
+        sndAlert.play();
     } else {
         startGame();
+        sndbgm.play();
     }
     started = !started
 })
@@ -32,7 +39,7 @@ replayBtn.addEventListener('click', () => {
     started = !started;
     startGame();
     hidePopup();
-
+    sndbgm.play();
 })
 
 
@@ -60,10 +67,13 @@ function removeCarrot() {
         carrot[i].addEventListener('click', () => {
             gameCnt.textContent--;
             carrot[i].remove()
+            sndCarrotPull.play();
             
             if (gameTimer.textContent != '0:0' && gameCnt.textContent == '0') {
                 stopGame();
                 changePopupMsg('win');
+                sndbgm.pause();
+                sndGameWin.play();
                 started = !started;
             }
         })
@@ -87,6 +97,8 @@ function checkClickBug() {
 
     for (let i=0; i<bug.length; i++) {
         bug[i].addEventListener('click', () => {
+            sndbgm.pause();
+            sndBugPull.play();
             stopGame();
             changePopupMsg('lose');
             started = !started;
@@ -130,6 +142,8 @@ function countDown() {
 
     if (time == 0) {
         stopGame();
+        sndbgm.pause();
+        sndAlert.play();
         changePopupMsg('lose');
         started = !started;
     }
